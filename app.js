@@ -8,6 +8,7 @@ var express = require('express')
 , numCPUs = require('os').cpus().length
 , fs = require('fs')
 , routes = require('./routes')
+, logfmt = require('logfmt')
 , user = require('./routes/user')
 , contact = require('./routes/contact')
 , honpac = require('./routes/honpac')
@@ -19,6 +20,8 @@ var express = require('express')
 
 var app = express();
 var lang = 'ch';
+
+app.use(logfmt.requestLogger());
 
 if (cluster.isMaster) {
 	// Fork workers.
@@ -56,8 +59,7 @@ if (cluster.isMaster) {
 } 
 else{
 	// all environments
-	app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 8080);
-	app.set('ipaddr', process.env.OPENSHIFT_NODEJS_IP ||process.env.PORT);
+	app.set('port', process.env.PORT || 5000);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'ejs');
 	app.use(express.favicon());
