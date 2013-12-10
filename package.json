@@ -16,7 +16,7 @@
   "readmeFilename": "README.md",
   "main": "app.js",
   "devDependencies": {},
-  "repository": "",
+  "repository": "https://github.com/joycelan/heroku_joycelan.git",
   "author": "",
   "license": "BSD"
 }
