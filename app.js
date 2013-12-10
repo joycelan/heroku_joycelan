@@ -16,7 +16,6 @@ var express = require('express')
 , http = require('http')
 , writer = require('./routes/write.js')
 , path = require('path')
-, Iconv = require('iconv').Iconv;
 
 var app = express();
 var lang = 'ch';
@@ -156,31 +155,6 @@ else{
 
 	http.createServer(app).listen(app.get('port'), app.get('ipaddr'), function(){
 		console.log('Express server listening on port ' + app.get('port'));
-/*		var iconv = new Iconv('UTF-8', 'Big5//TRANSLIT//IGNORE');
-	//	var iconv = new Iconv('UTF-8', 'Big5');
-
-		var ans = 'eee'; //= iconv.convert('ça va');
-	//	var ans = iconv.convert('a va');
-		var ans2 = iconv.convert('測試');
-		var ans3 = '測試';
-	//	console.log(ans.toString('UTF-8'));
-	//	console.log(ans2.toString('UTF-8'));
-		
-		console.log(ans2.toString('UTF-8'));
-		console.log('Ans: %s %s /////real string: %s', ans, ans2, ans3);
-		console.log('Ans: ', ans, ans2.toString(), ans3);
-*/
-
-		// convert from UTF-8 to ISO-8859-1
-		 var Buffer = require('buffer').Buffer;
-		 var assert = require('assert');
-		
-		 var iconv = new Iconv('UTF-8', 'ISO-8859-1');
-		 var buffer = iconv.convert('Hello, world!');
-		 var buffer2 = iconv.convert(new Buffer('Hello, world!'));
-		 console.log('%s, %s', buffer, buffer2);
-		// assert.equals(buffer.inspect(), buffer2.inspect());
-		// do something useful with the buffers
 	});
 	var id = "";
 	process.on('message', function(msg) {  
